@@ -5,7 +5,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1153.3333333333333,1433.3333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1153.3333333333333,876.6666666666666</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>AddQueueItems_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -105,7 +105,7 @@
       <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="AddQueueItems" sap:VirtualizedContainerService.HintSize="514.6666666666666,1368.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="AddQueueItems" sap:VirtualizedContainerService.HintSize="512,812" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dc_Campaigns" />
     </Sequence.Variables>
@@ -114,25 +114,24 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ObtainCampaignData - Invoke Workflow File (Framework\ObtainCampaignData.xaml)" sap:VirtualizedContainerService.HintSize="452.6666666666667,155.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\ObtainCampaignData.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ObtainCampaignData - Invoke Workflow File (Framework\ObtainCampaignData.xaml)" sap:VirtualizedContainerService.HintSize="450,155.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\ObtainCampaignData.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
         <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="out_dc_Campaigns">[dc_Campaigns]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:String)" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="452.6666666666667,770.6666666666666" sap2010:WorkflowViewState.IdRef="ForEach`1_8" Values="[dc_Campaigns]">
+    <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:String)" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="450,568.6666666666666" sap2010:WorkflowViewState.IdRef="ForEach`1_8" Values="[dc_Campaigns]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="scg:KeyValuePair(x:String, x:String)">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="scg:KeyValuePair(x:String, x:String)" Name="campaign" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,562.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_19">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,378" sap2010:WorkflowViewState.IdRef="Sequence_19">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,184.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;ID: &quot; + campaign.Key + vbCr + &quot;Sector: &quot; + campaign.Value]" />
             <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DownloadExcel - Invoke Workflow File (Framework\DownloadExcel.xaml)" sap:VirtualizedContainerService.HintSize="354,155.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Framework\DownloadExcel.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InArgument x:TypeArguments="x:String" x:Key="in_ID">[campaign.key]</InArgument>
@@ -157,17 +156,5 @@
         </ActivityAction>
       </ui:ForEach.Body>
     </ui:ForEach>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452.6666666666667,354.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_7">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,252" sap2010:WorkflowViewState.IdRef="Sequence_22">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_13" Message="[&quot;hola&quot;]" />
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
   </Sequence>
 </Activity>
