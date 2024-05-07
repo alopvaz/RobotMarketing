@@ -1,12 +1,13 @@
 <Activity mc:Ignorable="sap sap2010" x:Class="AddCustomers" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
-    <x:Property Name="in_TransactionItemSpecificContent" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="in_ID" Type="InArgument(x:String)" />
+    <x:Property Name="in_Sector" Type="InArgument(x:String)" />
   </x:Members>
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1794,2011</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1153.3333333333333,1943.3333333333333</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>AddCustomers_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -103,13 +104,16 @@
       <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Vamos a recuperar el archivo Excel del QueueItem actual para poder manipular su contenido. Para ello accedemos a la ruta del archivo en el Config, y al SpecificContent del QueueItem, que concatenados nos llevarán al archivo. Vamos a pasar sus datos a un Data Table, que vamo a filtrar para quedarnos solo con la columna &quot;Correo electrónico&quot; y añadir una columna Sector valor va a depender del Sector al que pertenezca. " DisplayName="AddCustomersItems" sap:VirtualizedContainerService.HintSize="592,1946" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Vamos a recuperar el archivo Excel del QueueItem actual para poder manipular su contenido. Para ello accedemos a la ruta del archivo en el Config, y al SpecificContent del QueueItem, que concatenados nos llevarán al archivo. Vamos a pasar sus datos a un Data Table, que vamo a filtrar para quedarnos solo con la columna &quot;Correo electrónico&quot; y añadir una columna Sector valor va a depender del Sector al que pertenezca. " DisplayName="AddCustomersItems" sap:VirtualizedContainerService.HintSize="592,1878.6666666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="ExcelFile" />
       <Variable x:TypeArguments="x:String" Name="CurrentExcel" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_CurrentExcel" />
       <Variable x:TypeArguments="x:String" Name="st_currentexcel" />
       <Variable x:TypeArguments="sd:DataTable" Name="dt_filtered" />
+      <Variable x:TypeArguments="sd:DataTable" Name="dt_FilteredCurrentExcel" />
+      <Variable x:TypeArguments="x:String" Name="st" />
+      <Variable x:TypeArguments="x:String" Name="st_FilteredCurrentExcel" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -117,12 +121,12 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap2010:Annotation.AnnotationText="" DisplayName="Acceder al archivo Excel del QueueItem actual" sap:VirtualizedContainerService.HintSize="530,122" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign sap2010:Annotation.AnnotationText="" DisplayName="Acceder al archivo Excel del QueueItem actual" sap:VirtualizedContainerService.HintSize="530,125.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[CurrentExcel]</OutArgument>
       </Assign.To>
       <Assign.Value>
-        <InArgument x:TypeArguments="x:String">[in_Config("PathExcelFile").ToString + in_TransactionItemSpecificContent("Sector").ToString + ".xlsx"]</InArgument>
+        <InArgument x:TypeArguments="x:String">[in_Config("PathExcelFile").ToString + in_Sector + ".xlsx"]</InArgument>
       </Assign.Value>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -130,9 +134,9 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="530,130" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[CurrentExcel]" />
-    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_CurrentExcel]" DisplayName="Read Range Workbook" sap:VirtualizedContainerService.HintSize="530,128" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="people list" WorkbookPath="[CurrentExcel]" />
-    <ui:FilterDataTable DataTable="[dt_CurrentExcel]" DisplayName="Filter Data Table" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="530,201" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[dt_filtered]" SelectColumnsMode="Keep">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="530,184.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;URL Current Excel: &quot; + CurrentExcel]" />
+    <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_CurrentExcel]" DisplayName="Añadir datos a Data Table" sap:VirtualizedContainerService.HintSize="530,128" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="people list" WorkbookPath="[CurrentExcel]" />
+    <ui:FilterDataTable DataTable="[dt_CurrentExcel]" DisplayName="Quedarnos con la columna de email" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="530,204" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[dt_FilteredCurrentExcel]" SelectColumnsMode="Keep">
       <ui:FilterDataTable.Filters>
         <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
           <ui:FilterOperationArgument Column="{x:Null}" Operand="{x:Null}" BooleanOperator="And" Operator="NOTEMPTY" />
@@ -144,34 +148,33 @@
         </scg:List>
       </ui:FilterDataTable.SelectColumns>
     </ui:FilterDataTable>
-    <ui:AddDataColumn x:TypeArguments="x:String" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Sector" DataTable="[dt_filtered]" DisplayName="Add Data Column" sap:VirtualizedContainerService.HintSize="530,226" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_2" />
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_filtered]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="530,394" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:AddDataColumn x:TypeArguments="x:String" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Sector" DataTable="[dt_FilteredCurrentExcel]" DisplayName="Añadir columna para Sector" sap:VirtualizedContainerService.HintSize="530,231.33333333333334" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_2" />
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_FilteredCurrentExcel]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="530,400.6666666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,190" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,192.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign sap:VirtualizedContainerService.HintSize="434,108" sap2010:WorkflowViewState.IdRef="Assign_3">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Object">[CurrentRow("Sector")]</OutArgument>
               </Assign.To>
               <Assign.Value>
-                <InArgument x:TypeArguments="x:Object">[in_TransactionItemSpecificContent("Sector").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:Object">[in_Sector]</InArgument>
               </Assign.Value>
             </Assign>
           </Sequence>
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <ui:OutputDataTable DataTable="[dt_filtered]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="530,120" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[st_currentexcel]" />
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="530,130" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[st_currentexcel]" />
-    <ui:WriteRange StartingCell="{x:Null}" AddHeaders="False" DataTable="[dt_filtered]" DisplayName="Write Range Workbook" sap:VirtualizedContainerService.HintSize="530,156" sap2010:WorkflowViewState.IdRef="WriteRange_1" SheetName="sheet1" WorkbookPath="[in_Config(&quot;PathExcelFileFiltered&quot;).ToString + in_TransactionItemSpecificContent(&quot;Sector&quot;).ToString + &quot;.xlsx&quot;]" />
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="530,164" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;hola&quot;]" />
+    <ui:OutputDataTable DataTable="[dt_FilteredCurrentExcel]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="530,122" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[st_FilteredCurrentExcel]" />
+    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="530,132" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[st_FilteredCurrentExcel]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="530,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;hola&quot;]" />
   </Sequence>
 </Activity>
