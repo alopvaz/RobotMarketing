@@ -8,7 +8,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1793.3333333333333,1998.6666666666667</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1794,2142</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>AddCustomers_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -46,6 +46,7 @@
       <x:String>UiPath.DataTableUtilities</x:String>
       <x:String>UiPath.Excel.Activities.Business</x:String>
       <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Numerics</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -106,9 +107,10 @@
       <AssemblyReference>System.CodeDom</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Forms</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
+      <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Vamos a recuperar la ruta del archivo Excel actual. Luego vamos a pasar los datos de ese Excel a una Data Table. Vamos a filtrar la tabla de forma que vamo s aquedarnos solo con la columna &quot;Persona - Email - Work&quot;. Luego vamos a añadir una columna para el Sector y por cada fila de la Data Table vamos a asignarle el valor para la columna Sector el correspondiente al Sector al que pertenezca el item actual del flujo." DisplayName="AddCustomersItems" sap:VirtualizedContainerService.HintSize="592,1934" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Vamos a recuperar la ruta del archivo Excel actual. Luego vamos a pasar los datos de ese Excel a una Data Table. Vamos a filtrar la tabla de forma que vamo s aquedarnos solo con la columna &quot;Persona - Email - Work&quot;. Luego vamos a añadir una columna para el Sector y por cada fila de la Data Table vamos a asignarle el valor para la columna Sector el correspondiente al Sector al que pertenezca el item actual del flujo." DisplayName="AddCustomersItems" sap:VirtualizedContainerService.HintSize="592,2077" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="ExcelFile" />
       <Variable x:TypeArguments="x:String" Name="CurrentExcel" />
@@ -125,7 +127,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Assign sap2010:Annotation.AnnotationText="" DisplayName="Acceder al archivo Excel actual" sap:VirtualizedContainerService.HintSize="530,125.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
+    <Assign sap2010:Annotation.AnnotationText="" DisplayName="Acceder al archivo Excel actual" sap:VirtualizedContainerService.HintSize="530,121" sap2010:WorkflowViewState.IdRef="Assign_1">
       <Assign.To>
         <OutArgument x:TypeArguments="x:String">[CurrentExcel]</OutArgument>
       </Assign.To>
@@ -138,9 +140,9 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </Assign>
-    <ui:LogMessage DisplayName="Mostrar URL actual del archivo Excel" sap:VirtualizedContainerService.HintSize="530,184.66666666666666" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;URL Current Excel: &quot; +  vbCr + CurrentExcel]" />
+    <ui:LogMessage DisplayName="Mostrar URL actual del archivo Excel" sap:VirtualizedContainerService.HintSize="530,181" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;URL Current Excel: &quot; +  vbCr + CurrentExcel]" />
     <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_CurrentExcel]" DisplayName="Añadir datos del Excel actual a Data Table" sap:VirtualizedContainerService.HintSize="530,128" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="people list" WorkbookPath="[CurrentExcel]" />
-    <ui:FilterDataTable DataTable="[dt_CurrentExcel]" DisplayName="Filtrar y quedarnos con la columna de email" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="530,204" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[out_dt_FilteredCurrentExcel]" SelectColumnsMode="Keep">
+    <ui:FilterDataTable DataTable="[dt_CurrentExcel]" DisplayName="Filtrar y quedarnos con la columna de email" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="530,201" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[out_dt_FilteredCurrentExcel]" SelectColumnsMode="Keep">
       <ui:FilterDataTable.Filters>
         <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
           <ui:FilterOperationArgument Column="{x:Null}" Operand="{x:Null}" BooleanOperator="And" Operator="NOTEMPTY" />
@@ -152,20 +154,20 @@
         </scg:List>
       </ui:FilterDataTable.SelectColumns>
     </ui:FilterDataTable>
-    <ui:AddDataColumn x:TypeArguments="x:String" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Sector" DataTable="[out_dt_FilteredCurrentExcel]" DisplayName="Añadir columna para Sector" sap:VirtualizedContainerService.HintSize="530,231.33333333333334" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_2" />
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[out_dt_FilteredCurrentExcel]" DisplayName="Por cada fila de la Data Table, asignar mismo vamor para Sector" sap:VirtualizedContainerService.HintSize="530,400.6666666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:AddDataColumn x:TypeArguments="x:String" AllowDBNull="{x:Null}" AutoIncrement="{x:Null}" Column="{x:Null}" DefaultValue="{x:Null}" MaxLength="{x:Null}" Unique="{x:Null}" ColumnName="Sector" DataTable="[out_dt_FilteredCurrentExcel]" DisplayName="Añadir columna para Sector" sap:VirtualizedContainerService.HintSize="530,226" sap2010:WorkflowViewState.IdRef="AddDataColumn`1_2" />
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[out_dt_FilteredCurrentExcel]" DisplayName="Por cada fila de la Data Table, asignar mismo vamor para Sector" sap:VirtualizedContainerService.HintSize="530,393" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,192.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="496,189" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign DisplayName="Asignar valor para Sector" sap:VirtualizedContainerService.HintSize="434,108" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign DisplayName="Asignar valor para Sector" sap:VirtualizedContainerService.HintSize="434,104" sap2010:WorkflowViewState.IdRef="Assign_3">
               <Assign.To>
                 <OutArgument x:TypeArguments="x:Object">[CurrentRow("Sector")]</OutArgument>
               </Assign.To>
@@ -177,16 +179,17 @@
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <ui:OutputDataTable DataTable="[out_dt_FilteredCurrentExcel]" DisplayName="Convertir Data Table en String" sap:VirtualizedContainerService.HintSize="530,122" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[st_FilteredCurrentExcel]" />
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="530,354.6666666666667" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+    <ui:OutputDataTable DataTable="[out_dt_FilteredCurrentExcel]" DisplayName="Convertir Data Table en String" sap:VirtualizedContainerService.HintSize="530,120" sap2010:WorkflowViewState.IdRef="OutputDataTable_2" Text="[st_FilteredCurrentExcel]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="530,181" sap2010:WorkflowViewState.IdRef="LogMessage_4" Message="[&quot;Numero de filas de la data table del sector &quot; + in_Sector + &quot; : &quot; + vbCr + out_dt_FilteredCurrentExcel.Rows.Count.ToString()]" />
+    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="530,351" sap2010:WorkflowViewState.IdRef="CommentOut_1">
       <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,252" sap2010:WorkflowViewState.IdRef="Sequence_7">
+        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,249" sap2010:WorkflowViewState.IdRef="Sequence_7">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Mostrar Data Table actual" sap:VirtualizedContainerService.HintSize="354,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Current Data Table: &quot; + vbCr + st_FilteredCurrentExcel]" />
+          <ui:LogMessage DisplayName="Mostrar Data Table actual" sap:VirtualizedContainerService.HintSize="354,164" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Current Data Table: &quot; + vbCr + st_FilteredCurrentExcel]" />
         </Sequence>
       </ui:CommentOut.Body>
     </ui:CommentOut>

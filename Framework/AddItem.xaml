@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1793.3333333333333,2074.6666666666665</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1794,1378</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>AddItem_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -96,7 +96,7 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="AddItem" sap:VirtualizedContainerService.HintSize="610.6666666666666,2010" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="AddItem" sap:VirtualizedContainerService.HintSize="610,1313" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="st_FilteredCurrentExcel" />
       <Variable x:TypeArguments="x:String" Name="OrchestratorQueueFolder" />
@@ -107,7 +107,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:MultipleAssign DisplayName="Asignar Ruta de la carpeta del orquestador y cola" sap:VirtualizedContainerService.HintSize="548.6666666666666,188" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+    <ui:MultipleAssign DisplayName="Asignar Ruta de la carpeta del orquestador y cola" sap:VirtualizedContainerService.HintSize="548,187" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -129,55 +129,32 @@
         </scg:List>
       </ui:MultipleAssign.AssignOperations>
     </ui:MultipleAssign>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="548.6666666666666,309.3333333333333" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,189.33333333333334" sap2010:WorkflowViewState.IdRef="Sequence_3">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:OutputDataTable DataTable="[in_dt_FilteredCurrentExcel]" DisplayName="Output Data Table" sap:VirtualizedContainerService.HintSize="354,104.66666666666667" sap2010:WorkflowViewState.IdRef="OutputDataTable_1" Text="[st_FilteredCurrentExcel]" />
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="548.6666666666666,372" sap2010:WorkflowViewState.IdRef="CommentOut_2">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,252" sap2010:WorkflowViewState.IdRef="Sequence_4">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_1" Message="[&quot;Para subir elementos a orquestador&quot; + vbCr + st_FilteredCurrentExcel]" />
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
-    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_dt_FilteredCurrentExcel]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="548.6666666666666,885.3333333333334" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="548,181" sap2010:WorkflowViewState.IdRef="LogMessage_7" Message="[&quot;Carpeta del orquestador: &quot; + vbCr + OrchestratorQueueFolder + vbcr + &quot;Cola del orquestador: &quot; + vbcr + OrchestratorQueueCustomersName]" />
+    <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[in_dt_FilteredCurrentExcel]" DisplayName="For Each Row in Data Table" sap:VirtualizedContainerService.HintSize="548,857" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
       <ui:ForEachRow.Body>
         <ActivityAction x:TypeArguments="sd:DataRow">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="514.6666666666666,677.3333333333334" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="514,670" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452.6666666666667,372" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452,368" sap2010:WorkflowViewState.IdRef="CommentOut_5">
               <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,252" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,249" sap2010:WorkflowViewState.IdRef="Sequence_7">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Email: &quot; + CurrentRow(&quot;Persona - Email - Work&quot;).ToString + vbCr + &quot;Sector: &quot; + CurrentRow(&quot;Sector&quot;).ToString]" />
+                  <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,164" sap2010:WorkflowViewState.IdRef="LogMessage_3" Message="[&quot;Email: &quot; + CurrentRow(&quot;Persona - Email - Work&quot;).ToString + vbCr + &quot;Sector: &quot; + CurrentRow(&quot;Sector&quot;).ToString]" />
                 </Sequence>
               </ui:CommentOut.Body>
             </ui:CommentOut>
-            <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" FolderPath="[OrchestratorQueueFolder]" sap:VirtualizedContainerService.HintSize="452.6666666666667,220.66666666666666" sap2010:WorkflowViewState.IdRef="AddQueueItem_2" Priority="Normal" QueueType="[OrchestratorQueueCustomersName]">
+            <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" FolderPath="[OrchestratorQueueFolder]" sap:VirtualizedContainerService.HintSize="452,217" sap2010:WorkflowViewState.IdRef="AddQueueItem_2" Priority="Normal" QueueType="[OrchestratorQueueCustomersName]">
               <ui:AddQueueItem.ItemInformation>
                 <InArgument x:TypeArguments="x:String" x:Key="Persona - Email - Work">[CurrentRow("Persona - Email - Work").ToString]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="Sector">[CurrentRow("Sector").ToString]</InArgument>
@@ -187,6 +164,5 @@
         </ActivityAction>
       </ui:ForEachRow.Body>
     </ui:ForEachRow>
-    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="548.6666666666666,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_6" Message="[&quot;hola&quot;]" />
   </Sequence>
 </Activity>
