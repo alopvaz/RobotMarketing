@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1153.3333333333333,2216</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1794,2509</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ObtainCampaignData_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -84,7 +84,7 @@
       <AssemblyReference>System.Linq.Expressions</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ObtainCampaignData" sap:VirtualizedContainerService.HintSize="732.6666666666666,2151.3333333333335" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="En este modulo vamos a acceder a los datos del Config sobre las campañas y vamos a tratarlos de forma que vamos a almacenarlos en un diccionario, sobre el que vamos a tratar en el resto del flujo de trabajo." DisplayName="ObtainCampaignData" sap:VirtualizedContainerService.HintSize="733,2444" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="st_PipedriveCampaigns" />
       <Variable x:TypeArguments="s:String[]" Name="array_PipedriveCampaigns" />
@@ -96,9 +96,10 @@
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:MultipleAssign sap2010:Annotation.AnnotationText="Hacemos tres asignaciones: &#xA;&#xA;1. Rescatamos los datos sobre las campañas del Config con formato &quot;191-Finanzas;189-Automoción&quot; y los almacenamos en la cadena st_PipedriveCampaigns. &#xA;&#xA;2. Dividimos la cadena rescatada por &quot;;&quot; y almacenamos los elementos en el array array_PipedriveCampaigns. &#xA;&#xA;3. Con motivo de recorrer el array y dividir por &quot;-&quot; de forma que el elemento cero se almacene como clave y el elemento uno como valor, creamos un diccionario de tipo string-string" DisplayName="Asignaciones múltiples sobre Campañas" sap:VirtualizedContainerService.HintSize="670.6666666666666,430.6666666666667" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+    <ui:MultipleAssign sap2010:Annotation.AnnotationText="Hacemos tres asignaciones: &#xA;&#xA;1. Rescatamos los datos sobre las campañas del Config con formato &quot;191-Finanzas;189-Automoción&quot; y los almacenamos en la cadena st_PipedriveCampaigns. &#xA;&#xA;2. Dividimos la cadena rescatada por &quot;;&quot; y almacenamos los elementos en el array array_PipedriveCampaigns. &#xA;&#xA;3. Con motivo de recorrer el array y dividir por &quot;-&quot; de forma que el elemento cero se almacene como clave y el elemento uno como valor, creamos un diccionario de tipo string-string" DisplayName="Asignaciones múltiples sobre Campañas" sap:VirtualizedContainerService.HintSize="671,410" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
       <ui:MultipleAssign.AssignOperations>
         <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
           <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -133,19 +134,20 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:MultipleAssign>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Vamos a iterar por cada elemento de nuestro array array_PipedriveCampaigns, y vamos a dividirlo por &quot;-&quot;, creando un nuevo array, de forma que el elemento cero vamos a añadir como clave a nuestro diccionario dc y el elemento uno como valor. " DisplayName="Por cada elemento de mi array de Campañas" sap:VirtualizedContainerService.HintSize="670.6666666666666,1190" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[array_PipedriveCampaigns]">
+    <ui:LogMessage DisplayName="Mostrar información sobre campañas" sap:VirtualizedContainerService.HintSize="671,181" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Información sobre campañas: &quot; + st_PipedriveCampaigns]" />
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" sap2010:Annotation.AnnotationText="Vamos a iterar por cada elemento de nuestro array array_PipedriveCampaigns, y vamos a dividirlo por &quot;-&quot;, creando un nuevo array, de forma que el elemento cero vamos a añadir como clave a nuestro diccionario dc y el elemento uno como valor. " DisplayName="Por cada elemento de mi array de Campañas" sap:VirtualizedContainerService.HintSize="671,1106" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[array_PipedriveCampaigns]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="campaign" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="636.6666666666666,920" sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="637,845" sap2010:WorkflowViewState.IdRef="Sequence_2">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <Assign DisplayName="Dividir elementos de Campaña" sap:VirtualizedContainerService.HintSize="574.6666666666666,125.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_1">
+            <Assign DisplayName="Dividir elementos de Campaña" sap:VirtualizedContainerService.HintSize="575,122" sap2010:WorkflowViewState.IdRef="Assign_1">
               <Assign.To>
                 <OutArgument x:TypeArguments="s:String[]">[array_Campaign]</OutArgument>
               </Assign.To>
@@ -153,15 +155,15 @@
                 <InArgument x:TypeArguments="s:String[]">[campaign.split("-")]</InArgument>
               </Assign.Value>
             </Assign>
-            <If Condition="[array_Campaign.Length = 2]" sap:VirtualizedContainerService.HintSize="574.6666666666666,710" sap2010:WorkflowViewState.IdRef="If_1">
+            <If Condition="[array_Campaign.Length = 2]" DisplayName="Si el array de campañas tiene dos elementos" sap:VirtualizedContainerService.HintSize="575,638" sap2010:WorkflowViewState.IdRef="If_1">
               <If.Then>
-                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="540.6666666666666,446" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="541,377" sap2010:WorkflowViewState.IdRef="Sequence_3">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:MultipleAssign DisplayName="Asignar ID y Sector" sap:VirtualizedContainerService.HintSize="478.6666666666667,188" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+                  <ui:MultipleAssign DisplayName="Asignar ID y Sector" sap:VirtualizedContainerService.HintSize="479,187" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
                     <ui:MultipleAssign.AssignOperations>
                       <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                         <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_4">
@@ -183,7 +185,7 @@
                       </scg:List>
                     </ui:MultipleAssign.AssignOperations>
                   </ui:MultipleAssign>
-                  <Assign DisplayName="Añadir información de las campañas en el diccionario" sap:VirtualizedContainerService.HintSize="478.6666666666667,125.33333333333333" sap2010:WorkflowViewState.IdRef="Assign_2">
+                  <Assign DisplayName="Añadir información de las campañas en el diccionario" sap:VirtualizedContainerService.HintSize="479,105" sap2010:WorkflowViewState.IdRef="Assign_2">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[out_dc_Campaigns(ID)]</OutArgument>
                     </Assign.To>
@@ -191,28 +193,10 @@
                       <InArgument x:TypeArguments="x:String">[Sector]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="478.6666666666667,48" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-                    <ui:CommentOut.Body>
-                      <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,250.66666666666666" sap2010:WorkflowViewState.IdRef="Sequence_4">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,166" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;ID: &quot; + ID + vbCr + &quot;Sector: &quot; + Sector]" />
-                      </Sequence>
-                    </ui:CommentOut.Body>
-                    <sap:WorkflowViewStateService.ViewState>
-                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                      </scg:Dictionary>
-                    </sap:WorkflowViewStateService.ViewState>
-                  </ui:CommentOut>
                 </Sequence>
               </If.Then>
               <If.Else>
-                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,101.33333333333333" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,100" sap2010:WorkflowViewState.IdRef="Sequence_5">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -230,19 +214,20 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEach>
-    <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:String)" CurrentIndex="{x:Null}" DisplayName="Iterar por cada elemento del diccionario" sap:VirtualizedContainerService.HintSize="670.6666666666666,442.6666666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[out_dc_Campaigns]">
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="671,181" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="[UiPath.Core.Activities.LogLevel.Info]" Message="[&quot;Elementos finales del diccionario: &quot;]" />
+    <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:String)" CurrentIndex="{x:Null}" DisplayName="Iterar por cada elemento del diccionario" sap:VirtualizedContainerService.HintSize="671,436" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[out_dc_Campaigns]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="scg:KeyValuePair(x:String, x:String)">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="scg:KeyValuePair(x:String, x:String)" Name="item" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,252" sap2010:WorkflowViewState.IdRef="Sequence_6">
+          <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="416,249" sap2010:WorkflowViewState.IdRef="Sequence_6">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="354,167.33333333333334" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;ID: &quot; + item.Key + vbcr + &quot;Sector: &quot; + item.Value]" />
+            <ui:LogMessage DisplayName="Mostrar elementos finales del diccionario" sap:VirtualizedContainerService.HintSize="354,164" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;ID: &quot; + item.Key + vbcr + &quot;Sector: &quot; + item.Value]" />
           </Sequence>
         </ActivityAction>
       </ui:ForEach.Body>
