@@ -1,12 +1,12 @@
 {
-  "name": "MARK-DISPATCHER",
+  "name": "UITS_09",
   "projectId": "a6f88398-f9a5-4dd7-8a8d-5b4e0e00f3fe",
   "description": "Robotic Enterprise Framework",
   "main": "Main.xaml",
   "dependencies": {
     "UiPath.Credentials.Activities": "[2.0.0]",
     "UiPath.Excel.Activities": "[2.23.2-preview]",
-    "UiPath.System.Activities": "[24.2.0-preview]",
+    "UiPath.System.Activities": "[24.3.1]",
     "UiPath.Testing.Activities": "[24.2.0-preview]",
     "UiPath.UIAutomation.Activities": "[24.2.0-preview]",
     "UiPath.WebAPI.Activities": "[1.20.1]"
