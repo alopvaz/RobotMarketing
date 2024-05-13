@@ -6,7 +6,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1153.3333333333333,1053.3333333333333</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1153.3333333333333,1056.6666666666667</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Login_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -116,7 +116,7 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Login" sap:VirtualizedContainerService.HintSize="528.6666666666666,988.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Login" sap:VirtualizedContainerService.HintSize="528.6666666666666,992" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="Username" />
       <Variable x:TypeArguments="ss:SecureString" Name="Password" />
@@ -126,44 +126,46 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ObtainPipedriveCredential- Invoke Workflow File (Framework\PipedriveCredentials.xaml)" sap:VirtualizedContainerService.HintSize="466.6666666666667,154.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\ObtainPipedriveCredential.xaml">
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ObtainPipedriveCredential- Invoke Workflow File (Framework\PipedriveCredentials.xaml)" sap:VirtualizedContainerService.HintSize="466.6666666666667,155.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\ObtainPipedriveCredential.xaml">
       <ui:InvokeWorkflowFile.Arguments>
         <OutArgument x:TypeArguments="x:String" x:Key="out_Username">[Username]</OutArgument>
         <OutArgument x:TypeArguments="ss:SecureString" x:Key="out_Password">[Password]</OutArgument>
         <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)" x:Key="in_Config">[in_Config]</InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
-    <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="466.6666666666667,746" sap2010:WorkflowViewState.IdRef="OpenBrowser_4" UiBrowser="[io_LoginBrowser]" Url="[in_Config(&quot;URLPipedriveLogin&quot;).ToString]">
+    <ui:OpenBrowser AutomaticallyDownloadWebDriver="{x:Null}" CommunicationMethod="{x:Null}" Hidden="{x:Null}" NewSession="{x:Null}" Private="{x:Null}" BrowserType="Chrome" DisplayName="Open Browser" sap:VirtualizedContainerService.HintSize="466.6666666666667,748.6666666666666" sap2010:WorkflowViewState.IdRef="OpenBrowser_4" UiBrowser="[io_LoginBrowser]" Url="[in_Config(&quot;URLPipedriveLogin&quot;).ToString]">
       <ui:OpenBrowser.Body>
         <ActivityAction x:TypeArguments="x:Object">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
           </ActivityAction.Argument>
-          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,596.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_32">
-            <Sequence.Variables>
-              <Variable x:TypeArguments="x:String" Name="actualurl" />
-              <Variable x:TypeArguments="x:String" Name="currenturl" />
-            </Sequence.Variables>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="416,598.6666666666666" sap2010:WorkflowViewState.IdRef="Sequence_32">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="InsertCredentialData - Invoke Workflow File (Framework\InsertCredentialData.xaml)" sap:VirtualizedContainerService.HintSize="354,154.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Framework\InsertCredentialData.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="InsertCredentialData - Invoke Workflow File (Framework\InsertCredentialData.xaml)" sap:VirtualizedContainerService.HintSize="354,155.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Framework\InsertCredentialData.xaml">
               <ui:InvokeWorkflowFile.Arguments>
-                <InOutArgument x:TypeArguments="ui:Browser" x:Key="io_LoginBrowser">[io_LoginBrowser]</InOutArgument>
-                <InOutArgument x:TypeArguments="x:String" x:Key="io_Username">[Username]</InOutArgument>
-                <InOutArgument x:TypeArguments="ss:SecureString" x:Key="io_Password">[Password]</InOutArgument>
+                <InOutArgument x:TypeArguments="ui:Browser" x:Key="io_LoginBrowser">
+                  <VisualBasicReference x:TypeArguments="ui:Browser" ExpressionText="io_LoginBrowser" />
+                </InOutArgument>
+                <InOutArgument x:TypeArguments="x:String" x:Key="io_Username">
+                  <VisualBasicReference x:TypeArguments="x:String" ExpressionText="Username" />
+                </InOutArgument>
+                <InOutArgument x:TypeArguments="ss:SecureString" x:Key="io_Password">
+                  <VisualBasicReference x:TypeArguments="ss:SecureString" ExpressionText="Password" />
+                </InOutArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="CheckCredentials - Invoke Workflow File (Framework\CheckCorrectCredentials.xaml)" sap:VirtualizedContainerService.HintSize="354,154.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Framework\CheckCredentials.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="CheckCredentials - Invoke Workflow File (Framework\CheckCorrectCredentials.xaml)" sap:VirtualizedContainerService.HintSize="354,155.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Framework\CheckCredentials.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InOutArgument x:TypeArguments="ui:Browser" x:Key="io_LoginBrowser">[io_LoginBrowser]</InOutArgument>
                 <InArgument x:TypeArguments="ss:SecureString" x:Key="in_Password">[Password]</InArgument>
                 <InArgument x:TypeArguments="x:String" x:Key="in_Username">[Username]</InArgument>
               </ui:InvokeWorkflowFile.Arguments>
             </ui:InvokeWorkflowFile>
-            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DeviceLimit - Invoke Workflow File (Framework\DeviceLimit.xaml)" sap:VirtualizedContainerService.HintSize="354,154.66666666666666" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Framework\DeviceLimit.xaml">
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="DeviceLimit - Invoke Workflow File (Framework\DeviceLimit.xaml)" sap:VirtualizedContainerService.HintSize="354,155.33333333333334" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Framework\DeviceLimit.xaml">
               <ui:InvokeWorkflowFile.Arguments>
                 <InOutArgument x:TypeArguments="ui:Browser" x:Key="io_LoginBrowser">[io_LoginBrowser]</InOutArgument>
               </ui:InvokeWorkflowFile.Arguments>
